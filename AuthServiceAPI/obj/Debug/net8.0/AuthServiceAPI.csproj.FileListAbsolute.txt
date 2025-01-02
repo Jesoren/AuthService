@@ -45,3 +45,5 @@ C:\Users\soren\Desktop\Auktionshus\AuthService\AuthServiceAPI\obj\Debug\net8.0\r
 C:\Users\soren\Desktop\Auktionshus\AuthService\AuthServiceAPI\obj\Debug\net8.0\AuthServiceAPI.pdb
 C:\Users\soren\Desktop\Auktionshus\AuthService\AuthServiceAPI\obj\Debug\net8.0\AuthServiceAPI.genruntimeconfig.cache
 C:\Users\soren\Desktop\Auktionshus\AuthService\AuthServiceAPI\obj\Debug\net8.0\ref\AuthServiceAPI.dll
+C:\Users\soren\Desktop\Auktionshus\AuthService\AuthServiceAPI\obj\Debug\net8.0\AuthServiceAPI.sourcelink.json
+C:\Users\soren\Desktop\Auktionshus\AuthService\AuthServiceAPI\bin\Debug\net8.0\NLog.config

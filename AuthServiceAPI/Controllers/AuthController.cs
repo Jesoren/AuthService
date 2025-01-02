@@ -28,7 +28,7 @@ public class AuthController : ControllerBase
     private string GenerateJwtToken(string username)
     {
         var securityKey =
-        new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Secret"]));
+        new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["AuthSettings:Secret"]));
         var credentials =
         new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
         var claims = new[]
@@ -36,7 +36,7 @@ public class AuthController : ControllerBase
 new Claim(ClaimTypes.NameIdentifier, username)
 };
         var token = new JwtSecurityToken(
-        _config["Issuer"],
+        _config["AuthSettings:Issuer"],
         "http://localhost",
         claims,
         expires: DateTime.Now.AddMinutes(15),
@@ -110,9 +110,17 @@ new Claim(ClaimTypes.NameIdentifier, username)
             return Unauthorized("Invalid password");
         }
 
-
-        // If credentials are valid, generate JWT token
-        var token = GenerateJwtToken(login.Username);
-        return Ok(new { token });
+        try
+        {
+                    // If credentials are valid, generate JWT token
+            var token = GenerateJwtToken(login.Username);
+            return Ok(new { token });
+        }
+        
+    catch (Exception ex)
+    {
+        _logger.LogError(ex, "Failed to generate JWT token for user: {Username}", login.Username);
+        return StatusCode(500, "Internal server error.");
+    }
     }
 }

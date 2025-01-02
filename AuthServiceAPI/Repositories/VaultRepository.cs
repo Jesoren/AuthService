@@ -35,20 +35,18 @@ namespace AuthService.Repositories
         public async Task<string> GetSecretAsync(string secret)
         {
 
-            try
+        try
             {
                 // Hent hemmeligheden fra Vault
                 Secret<SecretData> kv2Secret = await _vaultClient.V1.Secrets.KeyValue.V2
                     .ReadSecretAsync(path: "Hemmeligheder", mountPoint: "secret");
                 var value = kv2Secret.Data.Data[secret].ToString();
 
-                Console.WriteLine("Hemmeligheder blev hentet korrekt");
-
                 return value;
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Fejl ved hentning af {secret}: {ex.Message}");
+                Console.WriteLine($"Fejl ved hentning af Secret: {ex.Message}");
                 throw;
             }
         }
