@@ -37,7 +37,7 @@ new Claim(ClaimTypes.NameIdentifier, username)
 };
         var token = new JwtSecurityToken(
         _config["AuthSettings:Issuer"],
-        "http://localhost",
+        "http://authservice:8080",
         claims,
         expires: DateTime.Now.AddMinutes(15),
         signingCredentials: credentials);
